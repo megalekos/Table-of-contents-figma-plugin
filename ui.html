@@ -1,7 +1,7 @@
 <h1>Table of contents</h1>
 <script>
   let paragraph = document.createElement("p")
-  paragraph.innerText = "this is a test"
+  paragraph.innerText = "this is a created paragraph"
   const body = document.querySelector("body")
   body.append(paragraph);
 
@@ -10,5 +10,11 @@ onmessage = (event) => {
   console.log("from code.ts:  ", event.data.pluginMessage)
   let names = event.data.pluginMessage;
   console.log("does it work?  ", names)
+  names.map(name => {
+    let element = document.createElement("p")
+    element.innerText = name
+    body.append(element)
+    
+})
 }
 </script>
