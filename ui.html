@@ -5,5 +5,10 @@
   const body = document.querySelector("body")
   body.append(paragraph);
 
-//create elements 'onmessage'?
+//create elements 'onmessage'
+onmessage = (event) => {
+  console.log("from code.ts:  ", event.data.pluginMessage)
+  let names = event.data.pluginMessage;
+  console.log("does it work?  ", names)
+}
 </script>

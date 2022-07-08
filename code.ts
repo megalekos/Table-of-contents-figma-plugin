@@ -14,8 +14,11 @@ let sections = figma.root.findAll(node => node.type == "SECTION").reverse();
 const nodes: SceneNode[] = [];
 sections.map(section => nodes.push(section as SectionNode))
 
-nodes.map(section => console.log(section.name))
-console.log(nodes)
+const sectionNames: string[] = nodes.map(section => section.name)
+console.log("section names: ", sectionNames)
+
+//send names of sections to UI
+figma.ui.postMessage(sectionNames)
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
