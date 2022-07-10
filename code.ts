@@ -17,6 +17,9 @@ const sectionNames: string[] = nodes.map(section => section.name)
 //send names of sections to UI
 figma.ui.postMessage(sectionNames)
 
+//resize after dynamic elements
+figma.ui.resize(300, 500)
+
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
