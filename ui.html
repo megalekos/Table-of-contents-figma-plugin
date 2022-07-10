@@ -7,14 +7,23 @@
 
 //create elements 'onmessage'
 onmessage = (event) => {
-  console.log("from code.ts:  ", event.data.pluginMessage)
+ // console.log("from code.ts:  ", event.data.pluginMessage)
   let names = event.data.pluginMessage;
-  console.log("does it work?  ", names)
-  names.map(name => {
+  //console.log("does it work?  ", names)
+ const links = names.map(name => {
     let element = document.createElement("p")
     element.innerText = name
     body.append(element)
     
+  })
+
+  document.querySelectorAll('p').forEach(el => el.onclick = () => {
+  //console.log(el.innerText)
+  
+  parent.postMessage({pluginMessage: links}, '*')
 })
 }
+//how to send elements to code.ts? store in  []?
+
+
 </script>

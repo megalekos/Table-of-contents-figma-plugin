@@ -12,7 +12,7 @@ const nodes: SceneNode[] = [];
 sections.map(section => nodes.push(section as SectionNode))
 
 const sectionNames: string[] = nodes.map(section => section.name)
-console.log("section names: ", sectionNames)
+//console.log("section names: ", sectionNames)
 
 //send names of sections to UI
 figma.ui.postMessage(sectionNames)
@@ -20,9 +20,9 @@ figma.ui.postMessage(sectionNames)
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
-figma.ui.onmessage = msg => {
+figma.ui.onmessage = pluginMessage => {
 
-  
+console.log(pluginMessage.links)  
 
 
   figma.currentPage.selection = nodes;
