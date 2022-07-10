@@ -8,7 +8,7 @@ figma.showUI(__html__);
 
 let sections = figma.root.findAll(node => node.type == "SECTION").reverse();
 
-const nodes: SceneNode[] = [];
+let nodes: SceneNode[] = [];
 sections.map(section => nodes.push(section as SectionNode))
 
 const sectionNames: string[] = nodes.map(section => section.name)
@@ -22,10 +22,16 @@ figma.ui.postMessage(sectionNames)
 // posted message.
 figma.ui.onmessage = pluginMessage => {
 
-console.log(pluginMessage.links)  
+console.log(pluginMessage)  
+nodes.forEach(node => {
+  if (pluginMessage === node.name) {
+      console.log(node)
+      nodes = []
+      nodes.push(node)
+  }
+})
 
-
-  figma.currentPage.selection = nodes;
+   figma.currentPage.selection = nodes;
   figma.viewport.scrollAndZoomIntoView(nodes);
  
   figma.closePlugin();
