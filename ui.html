@@ -2,41 +2,40 @@
 <style>
 body {
   font-family: 'Inter', sans-serif;
-  padding: 1rem;
-  background-color: #fffaf5;
+  padding: 0;
   box-sizing: border-box;
 }
-h1 {
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 300;
-  margin-bottom: 20px;
-  color: rgb(118, 55, 47);
+
+img {
+  height: 15px;
+  width: 15px;
+  padding-right: 10px;
 }
-h1::after, h1::before {
-  content: "~";
-}
-p {
+
+.section {
   cursor: pointer;
-  text-align: center;
-  font-weight: 600;
-  color: rgb(118, 55, 47);
-  background-color: rgb(255, 255, 255);
-
-  border-radius: 10px;
+  /* font-weight: 600; */
   line-height: 2rem;
-  box-shadow: 5px 5px 9px 0px rgb(239, 209, 205);
-
-
+  padding: 0 20px;
 }
-p:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(155, 110, 104);
-  font-weight: 600;
+
+.section:hover {
+  outline: solid 0.5px rgb(0, 123, 229);
+  /* outline-offset: 10px; */
+}
+
+.section:active {
+  background-color: #E5F4FF;
+}
+
+p {
+  padding: 30px;
+  background-color: rgb(241, 229, 255);
 }
 </style>
 
-<h1>Table of contents</h1>
+<!-- <h1>Table of contents</h1> -->
+<p>Click a section in the list to go there now.</p>
 <script>
   const body = document.querySelector("body")
  
@@ -47,13 +46,17 @@ onmessage = (event) => {
   let names = event.data.pluginMessage;
   //console.log("does it work?  ", names)
   names.map(name => {
-    let element = document.createElement("p")
-    element.innerText = name
+    let element = document.createElement("div")
+    // element.innerText = name
+    element.className = "section"
     body.append(element)
+    let icon = document.createElement("img")
+    icon.src = "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.274414 5.53554V10.0506C0.274414 10.6755 0.781035 11.1821 1.40598 11.1821H10.0507C10.6757 11.1821 11.1823 10.6755 11.1823 10.0506V2.31492C11.1823 1.68997 10.6757 1.18335 10.0507 1.18335H8.62068V1.88335H10.0507C10.2891 1.88335 10.4823 2.07657 10.4823 2.31492V10.0506C10.4823 10.2889 10.2891 10.4821 10.0507 10.4821H1.40598C1.16763 10.4821 0.974414 10.2889 0.974414 10.0506V5.53554H0.274414Z' fill='black'/%3E%3Cmask id='path-2-inside-1_880_516' fill='white'%3E%3Crect x='0.274414' y='0.935059' width='6.78297' height='3.01909' rx='0.678942'/%3E%3C/mask%3E%3Crect x='0.274414' y='0.935059' width='6.78297' height='3.01909' rx='0.678942' stroke='black' stroke-width='1.4' mask='url(%23path-2-inside-1_880_516)'/%3E%3C/svg%3E"
+    element.append(icon,name)
     
   })
 
-  document.querySelectorAll('p').forEach(el => el.onclick = () => {
+  document.querySelectorAll('div').forEach(el => el.onclick = () => {
   //console.log(el.innerText)
   const linkName = el.innerText
   
